@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.tcc.economizapp</groupId>
+	<artifactId>economizapp</artifactId>
+	<packaging>apk</packaging>
+	<version>1.0</version>
+	
+	<properties>
+		
+		<!-- Infra -->
+		<java.version>1.7</java.version>
+		<maven.version>3.0.5</maven.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+		<!-- Android/Emulador -->
+		<android.api.level>4.4.2</android.api.level>
+		<android.api.platform>19</android.api.platform>
+		<android.sdk.home>${env.ANDROID_HOME}</android.sdk.home>
+
+		<!-- Plugins -->
+		<maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
+		<maven-enforcer-plugin.version>1.0</maven-enforcer-plugin.version>
+		<lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
+		<android-maven-plugin.version>3.6.0</android-maven-plugin.version>
+		<maven-surefire-plugin.version>2.10</maven-surefire-plugin.version>
+	
+	</properties>
+	
+	<dependencies>
+
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>android</artifactId>
+			<version>${android.api.level}</version>
+			<scope>provided</scope>
+		</dependency>
+	
+	</dependencies>
+	
+	<build>
+		<pluginManagement>
+			<plugins>
+				
+				<!-- Maven Integration for Eclipse provides tight integration for Maven into the IDE -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>${lifecycle-mapping.version}</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-enforcer-plugin</artifactId>
+										<versionRange>[1.0.0,)</versionRange>
+										<goals>
+											<goal>enforce</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			
+			<!-- This plugin is the key. It is a wrapper around the provided Android SDK ant tasks -->
+			<plugin>
+				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+				<artifactId>android-maven-plugin</artifactId>
+				<version>${android-maven-plugin.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<sdk>
+						<platform>${android.api.platform}</platform>
+					</sdk>
+					<sign>
+						<debug>false</debug>	
+					</sign>
+					<test>
+						<createReport>true</createReport>
+					</test>
+					<undeployBeforeDeploy>true</undeployBeforeDeploy>
+					<deleteConflictingFiles>true</deleteConflictingFiles>
+					<extractDuplicates>true</extractDuplicates>
+				</configuration>
+			</plugin>
+			
+			<!-- The Compiler Plugin is used to compile the sources of your project -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>	
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+
+			<!-- The Enforcer plugin provides goals to control certain environmental constraints such as Maven version, JDK version and OS family along with many more standard rules and user created rules -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>${maven-enforcer-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>enforce-java</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireJavaVersion>
+									<version>[${java.version},)</version>
+								</requireJavaVersion>
+								<requireMavenVersion>
+									<version>[${maven.version},)</version>
+								</requireMavenVersion>
+								<requireProperty>
+									<property>android.sdk.home</property>
+								</requireProperty>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- The Surefire Plugin is used during the test phase of the build lifecycle to execute the unit tests of an application -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+				<configuration>
+					<redirectTestOutputToFile>true</redirectTestOutputToFile>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

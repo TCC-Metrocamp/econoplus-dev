@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="app_name">Economizapp</string>
+    <string name="nota1">Nota 1</string>
+    <string name="nota2">Nota 2</string>
+    <string name="nota3">Nota 3</string>
+    <string name="calcular">Calcular</string>
+    <string name="media">Média</string>
+    <string name="nota_final">Nota Final</string>
+
+</resources>
