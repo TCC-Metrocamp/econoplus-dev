@@ -1,6 +1,6 @@
-package com.tcc.economizapp.activities;
+package com.tcc.econoplus.activities;
 
-import com.tcc.economizapp.R;
+import com.tcc.econoplus.R;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
 
 public class CalculaMediaActivity extends Activity {
 	private EditText txtNota1;
@@ -24,6 +25,8 @@ public class CalculaMediaActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.calcula_media);
+		
+		//Db4oHelperUtils.init(this);
 
 		txtNota1 = (EditText) findViewById(R.id.txtNota1);
 		txtNota2 = (EditText) findViewById(R.id.txtNota2);
@@ -45,6 +48,7 @@ public class CalculaMediaActivity extends Activity {
 	}
 
 	private double calcularMedia(double n1, double n2, double n3) {
+		
 		double mediaFinal = (n1 + n2 + n3) / 3;
 		return mediaFinal;
 	}

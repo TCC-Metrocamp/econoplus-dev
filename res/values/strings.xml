@@ -1,11 +1,20 @@
 <resources>
 
-    <string name="app_name">Mão de vaca</string>
+    <string name="app_name">Econo +</string>
+    <string name="email">E-mail</string>
+    <string name="senha">Senha</string>
+    <string name="entrar">Entrar</string>
+    <string name="limpar">Limpar</string>
     <string name="nota1">Nota 1</string>
     <string name="nota2">Nota 2</string>
     <string name="nota3">Nota 3</string>
     <string name="calcular">Calcular</string>
     <string name="media">Média</string>
     <string name="nota_final">Nota Final</string>
+    <string name="nome">Nome</string>
+    <string name="sobrenome">Sobrenome</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="cadastrese">Cadastre-se</string>
+    <string name="voltarLogin">Voltar Login</string>
 
 </resources>

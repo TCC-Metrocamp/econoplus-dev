@@ -1,6 +1,7 @@
-package com.tcc.economizapp.activities;
+package com.tcc.econoplus.activities;
 
-import com.tcc.economizapp.R;
+
+import com.tcc.econoplus.R;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -24,7 +25,7 @@ public class TelaInicialActivity extends Activity {
 		public void run() {
 			// criamos um intent para nossa classe Principal
 			Intent minhaAcao = new Intent(TelaInicialActivity.this,
-					CalculaMediaActivity.class);
+					LoginActivity.class);
 			// startamos uma atividade passando o intent criado
 			TelaInicialActivity.this.startActivity(minhaAcao);
 			// fecha a atividade
